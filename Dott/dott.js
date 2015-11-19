@@ -23,13 +23,22 @@ define(function() {
             clearInterval(this.timer);
         }
     };
-
+    var protoString = Object.prototype.toString;
     return {
         isObject: function(obj) {
             return protoString.call(obj) == "[object Object]";
         },
         isArray: function(obj) {
             return protoString.call(obj) == "[object Array]";
+        },
+        isNumber: function(obj) {
+            return protoString.call(obj) == "[object Number]";
+        },
+        isString: function(obj) {
+            return protoString.call(obj) == "[object String]";
+        },
+        isFunction: function(obj) {
+            return protoString.call(obj) == "[object Function]";
         },
         extend: function(child, parent, deep) {
             for (var i in parent) {
@@ -95,7 +104,7 @@ define(function() {
          * @return {string}      返回分割后的字符串
          */
         dateJoin: function(date, splitStr) {
-            if (Object.prototype.toString.call(date) == '[object Number]')
+            if (isNumber(date))
                 date = new Date(date);
             var arr = [];
             arr.push(date.getFullYear());
