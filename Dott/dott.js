@@ -42,13 +42,13 @@ define(function() {
         },
         extend: function(child, parent, deep) {
             for (var i in parent) {
-                if (deep && (Util.isObject(parent[i]) || Util.isArray(parent[i]))) {
-                    if (Util.isObject(parent[i]) && !Util.isObject(child[i])) {
+                if (deep && (isObject(parent[i]) || isArray(parent[i]))) {
+                    if (isObject(parent[i]) && !isObject(child[i])) {
                         child[i] = {};
-                    } else if (Util.isArray(parent[i]) && !Util.isArray(child[i])) {
+                    } else if (isArray(parent[i]) && !isArray(child[i])) {
                         child[i] = [];
                     }
-                    Util.extend(child[i], parent[i], deep);
+                    extend(child[i], parent[i], deep);
                 } else if (parent[i] !== undefined) {
                     child[i] = parent[i];
                 }
